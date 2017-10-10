@@ -20,7 +20,8 @@ def get_config_resource(resource_pkg, resource_name):
 
     #Check the pkg exists in resources
     if resource_pkg not in ['stream',
-                            'wsn']:
+                            'wsn',
+                            'tests']:
         raise FileNotFoundError("Pkg Resource %s does not exist" % resource_pkg)        
     
     pkg_full = 'DustyPyManager.resources.%s' % resource_pkg

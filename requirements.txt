@@ -1,2 +1,3 @@
 SmartMeshIp
 boto3
+termcolor
