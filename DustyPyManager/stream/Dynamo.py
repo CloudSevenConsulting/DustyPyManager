@@ -32,7 +32,7 @@ def test():
     region_name = conf['default']['region']
 
     db = boto3.resource('dynamodb')
-    table = db.Table(conf['table']['data'])
+    table = db.Table('Movies')
     print(table.creation_date_time)
 
 if __name__ == '__main__':

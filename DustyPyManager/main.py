@@ -1,4 +1,4 @@
-from SmartMeshIp import SmartMeshSDK
+import SmartMeshSDK
 
 def main():
     print("Hello World")
