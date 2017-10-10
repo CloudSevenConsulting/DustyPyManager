@@ -2,8 +2,9 @@
 """
 
 import unittest
+import boto3
 
-from DustyPyManager.stream import Dynamo
+from DustyPyManager import configure
 
 def main():
     """Run the test
@@ -18,15 +19,22 @@ class TestStreamDynamo(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestStreamDynamo, self).__init__(*args, **kwargs)
 
+        self.conn_conf = configure.get_config_resource('stream', 'DynamoConnection.ini')
+
     def test_TU_NM_StreamDynamo_ClientObj_Op(self):
         """Test client object creation
 
         Pre-development test
         """
 
-        Dynamo.test()
-        self.assertTrue(True)
+        db = boto3.resource('dynamodb')
+        try:
+            table = db.Table('Movies')
+            print(table.creation_date_time)
+        except ResourceNotFoundException:
+            self.assertTrue(False)#Failed
 
+        self.assertTrue(True)
 
 if __name__ == '__main__':
     main()
