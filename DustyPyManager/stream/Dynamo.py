@@ -17,7 +17,8 @@ def get_kls_config(ini_path=None):
     """
 
     if (ini_path is None):
-        ini_path = pkg_resources.resource_string('DustyPyManager.resources.stream', 'DynamoConnection.ini')
+        ini_path = pkg_resources.resource_string('DustyPyManager.resources.stream',
+                                                 'DynamoConnection.ini')
 
     config = configparser.ConfigParser()
     config.read_string(ini_path.decode('ascii'))
@@ -30,7 +31,9 @@ def test():
     conf = get_kls_config()
     region_name = conf['default']['region']
 
-    client = boto3.client('dynamodb', region_name=region_name)
+    db = boto3.resource('dynamodb')
+    table = db.Table(conf['table']['data'])
+    print(table.creation_date_time)
 
 if __name__ == '__main__':
     test()
