@@ -51,40 +51,41 @@ def cli_stdout_prompt(print_time=True):
     
     print(prompt, end='')
 
-def cli_stdout(type, message):
+def cli_stdout(form, message):
     """Should be standard function when printing
     """
 
-    if type == 'err':
+    if form == 'err':
         head = "Error"
         head_font_col = 'white'
         head_back_col = 'on_red'
 
         body_font_col = 'red'
         body_back_col = None
-    if type == 'debug':
+    if form == 'debug':
         head = None
 
         body_font_col = 'white'
         body_back_col = None
-    if type == 'info':
+    if form == 'info':
         head = None
 
         body_font_col = 'white'
         body_back_col = 'on_blue'
-    if type == 'warn':
+    if form == 'warn':
         head = None
 
         body_font_col = 'yellow'
         body_back_col = None
-    if type == 'good':
+    if form == 'good':
         head = None
 
         body_font_col = 'green'
         body_back_col = None
 
     #Printing is done here
-    message = wrap_text(message)
+    if isinstance(message, str) or isinstance(message, unicode):
+        message = wrap_text(message)
 
     cli_stdout_prompt()
     if head is None:
