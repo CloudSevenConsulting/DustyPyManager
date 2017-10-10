@@ -62,6 +62,8 @@ def main():
         all_fails.extend(result.failures)
         if len(all_errs) + len(all_fails) == 0:
             cli_stdout("good", "%s passed" % kls)
+        else:
+            cli_stdout("warn", "%s failed" % kls)
         stream.seek(0)
         #print 'Test output\n', stream.read()
 
