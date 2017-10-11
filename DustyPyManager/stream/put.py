@@ -18,7 +18,7 @@ dynamodb = boto3.resource('dynamodb', region_name='ap-southeast-1')
 table = dynamodb.Table('NetworkData')
 
 MoteID = 4
-MoteTimestamp = "2016-10-05 0:00:00"
+MoteTimestamp = "2016-10-06 0:00:00"
 
 response = table.put_item(
 Item={
